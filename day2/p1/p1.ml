@@ -38,13 +38,15 @@ let outcome: int array array = [|
 |]
 
 let solve (s: string): int = parse s
-  |> List.map (fun x ->
-      if (List.nth x 0 <> 0) then 
-        List.nth x 0 + outcome.(List.nth x 0 - 1).(List.nth x 1 - 1)
-      else 0
+  |> List.map (fun x -> 
+      if List.nth x 0 == 0 then
+        0 
+      else
+        List.nth x 1 + outcome.(List.nth x 1 - 1).(List.nth x 0 - 1)
      )
   |> List.fold_left (+) 0
 
 let () =
   let ch = open_in "../input.txt" in
   print_endline(solve @@ really_input_string ch (in_channel_length ch) |> string_of_int)
+
