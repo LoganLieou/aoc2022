@@ -10,13 +10,9 @@ type tree = {
   mutable visible: bool;
 }
 
-let parse =
-  let parseCell c = { height = Int.of_string @@ String.of_char c; visible = false } in
-  let parseLine l = List.map ~f:parseCell (String.to_list l) in
-  List.map ~f:parseLine
-
-let p1 l =
-  let trees = parse l in
+(* TODO *)
+let p1 (l: string list): int =
+  List.length l + 2
 
 let () =
   let content = In_channel.read_all "input.txt" in
